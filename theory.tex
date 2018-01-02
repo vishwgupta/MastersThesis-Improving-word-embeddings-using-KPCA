@@ -1,0 +1,71 @@
+\chapter{Theory and Terminology}
+\label{cha:solutioni}
+
+In this chapter, we are going to discuss the theory and terminology used at the base level while implementing the solution.
+The representation of words in some mathematical form is an essential element in processing text, natural language or any other usage of text/speech in field of machine learning. There have been several efforts made for representing text as vectors.
+
+\section{Words and similarity between words }
+\subsection{\textit{N}-GRAM}
+There have been an increased research in Natural Language Processing which is mainly concerned with the interactions between computers and human languages. The main focus is on how to decipher languages mathematically and algorithmically. What most of the languages have in common is the morphemes, which determine the meaning of the words. Therefore in such languages, one can say that the words are similar when they have a common root/morpheme. 
+
+If taken the example of English language,many of the words are formed by taking basic words and adding combinations of prefixes and suffixes to them. This can be considered as a good measure for similarity. 
+
+\textit{N}-Gram is one approach to measure similarity between words  based on the common n-grams present in a word. Here \textit{n} can be 2,3,4. The bigger the value of \textit{n}, the more is the probability that it covers a root. It algorithmically quantify the similarity between a set of strings from a finite alphabet. 
+
+\begin{center}
+	Example: The similarity between words "Minimal", "Minimize" is greater than the similarity between "Minimal" and "Maximize".
+\end{center}
+
+There have been a lot of work done in finding similarity between words using \textit{N}-Gram. ]\cite{kondrak2005n} is one such example, in which the author has give a formal,recursive definitions of n-gram similarity and distance of the words. He also proposed an efficient algorithms for computing them. The algorithm involves combining different similarities values obtained from different \textit{n}-gram models. 
+
+One can select different values of \textit{n} for finding similarities based on the purpose. Uni-gram, bi-gram, tri-gram are some of the examples. One important consideration  that should be taken in account while calculating similarity is that banks before the starting of the word and at the end of the word should also be taken in the set of \textit{n}-grams. 
+
+\subsection{Principle Component Analysis(PCA)}
+
+
+%\cite{shlens2014tutorial}
+In today's world, there is a lot of data. 
+
+In the real world, the data set which has to be analyzed is very obscure. This data might have various outliers, errors or redundancy. The data which has to be analyzed has to be preprocessed. Even after preprocessing, it is difficult to figure out what the data is representing as it is usually a dense cloud of points. In data science, this is a fundamental problem.
+
+Another problem ,which is faced by many data scientist for analyzing data, is of parameters on which relates the data. There can be a lot of parameters which determine the relationship. An important fact which has to be determined is that which of these parameters relate the data most and appropriately. This problem is very well illustrated by an example stated in \cite{shlens2014tutorial}. In a similar example, when studying the velocity or motion of a ball thrown from some height, there are various parameters associated with it. Horizontal and vertical velocity, height, gravity and air friction are some of these parameters. Being a naive experimenter, one might know which of the parameters and dimensions are important to measure. These parameters can be considered as the dimensionality of the data when analyzing. Here the curse of dimensionality comes in picture. The curse of dimensionality refers to the problem of finding structure in a very high dimensional data. More the dimensions, more is the data needed to fill. 
+
+There have been many solutions for these problems. The idea which solves such issues is of reducing the dimension of the data. There have been many algorithms. One that standout is Principle Component Analysis(PCA). It is a very powerful tool in Machine learning. It is a very simple and non-parametric method for analyzing data in machine learning, which enable one to reduce a complex data into lower dimensional and analyze the hidden properties between the data set.
+
+The main goal of Principal component analysis is to compute the most meaningful basis to re-express a noisy, garbled data set. Hence in essence this algorithm determines the basis which are important and which are just redundant. The data being analyzed using Principle Component Analysis, can be thought of as a vector which lies in \textit{d}-dimension space, where \textit{d} can be thought of as the parameters on which that data point depends. 
+
+As stated in \cite{shlens2014tutorial}, PCA is mainly about finding another basis, which is a linear combination of the original basis and best re-expresses the data set. An important term to notice is Linearity which vastly simplifies the problem by restricting the set of potential bases. Hence with this assumption PCA is now limited to re-expressing the data as a linear combination of its basis vectors. 
+
+For example: If the original data set \textbf{X} is represented as \textit{$d\times n$} matrix, where \textit{d} is the dimension and \textit{n} is the number of data points in the set. Let \textbf{P} is the linear transformation on \textbf{X} and the transformed data set is \textbf{Y}.\\
+
+\begin{center}$\textbf{Y} = \textbf{P}\textbf{X}$\end{center}
+
+The row vectors in this linear transformation will act as the principal components of  the data set \textbf{X}. Therefore the main goal is to determine the best linear transformation, \textbf{P} and thus the set's intrinsic co-ordinate system. 
+
+
+
+
+
+
+
+
+
+\subsection{Kernel Function }
+
+In machine learning, the main goal is always to predict the function through which one can represent the given data set and generalize the future data set. When given a set of vectors, it is not an herculean task to detect linear relations among the data. But the problem arises when the relation between the data is not linear. In such cases a need of non-linear function with respect to the data arises. \\\\
+The best approach which can be followed is to map the data set to a higher dimension where the relation between the data points is linear. Thereafter the linear regression can be easily applied in that dimensional space. This is an theoretical approach which becomes very difficult on implementation because of the fact that the dimensional space, where the data relation becomes linear, is unknown. The solution for this problem is to calculate a similarity measure in the feature pace instead of the coordinates of the vectors there, then apply algorithms that only need the value of this measure.
+
+In can be shown that any kernel function implicitly calculates the dot-product of feature vectors of objects in high-dimensional feature spaces.
+According to the Mercers' theorem, 
+
+\cite{Scholkopf:2001:LKS:559923}
+\subsection{Kernelized PCA}
+
+\subsection{Distance measure used to find distance in clusters}
+ 
+\section{Syntactic similarity of words}
+\section{Semantic similarity between words}
+\subsection{one hot vector encoding}
+\subsection{word2vec}
+\section{Combining both semantic and syntactic similarities}
+

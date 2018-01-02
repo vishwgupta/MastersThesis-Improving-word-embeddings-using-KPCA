@@ -1,0 +1,200 @@
+\documentclass[12pt,a4paper,twoside]{book}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%
+% In general useful packages
+%%%%%%
+%\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage[square]{natbib}
+\usepackage[latin1]{inputenc} % allow Umlauts
+\usepackage[T1]{fontenc} % Umlauts as character in font
+\usepackage{fancyhdr}   % Header/Footer
+\usepackage[pdftex]{graphicx}
+\usepackage{pdfpages}
+\usepackage{float}
+\usepackage{fancyvrb}   % extended verbatim environment
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage[most]{tcolorbox}
+\usepackage{subfig}
+\usepackage{stmaryrd}
+%\raggedbottom
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+\usepackage[us]{datetime} % date in \today as "Month DD, YYYY", e.g., "February 29, 2012"
+\usepackage[plainpages=false, pdfpagelabels, bookmarks,  colorlinks=false,
+linkbordercolor={0 0 1}, filebordercolor={0 0 1}, citebordercolor={0 0 1},
+menubordercolor={0 0 1}, urlbordercolor={0 0 1}]{hyperref}
+
+\usepackage{pdfcomment}  % comments in text as PDF notes
+\newenvironment{nscenter}
+{\parskip=0pt\par\nopagebreak\centering}
+{\par\noindent\ignorespacesafterend}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% German style (no paragraph indent, but gap between paragraphs)
+% \setlength{\parindent}{0mm}
+% \setlength{\parskip}{4pt plus3pt minus2pt}
+
+% Page width and margins (usually no need to change, just use a4wide package)
+% \setlength{\textwidth}{15cm}
+% \addtolength{\oddsidemargin}{1mm}
+% \addtolength{\evensidemargin}{-13.5mm}
+\usepackage{a4wide} % better than individual setup
+
+% For fancyhdr, otherwise it might result in "overfull vbox"
+\addtolength{\headheight}{3.5pt}
+
+% URL Prefix for Bibliography (i.e., no prefix, typewriter as font for URLs)
+\newcommand{\urlprefix}{}
+\def\UrlFont{\small\tt}
+%\urlstyle{rm} % oder sf, falls obiges nicht funktioniert
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% Some useful macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% myfigure: filename width caption
+\newcommand{\myfigure}[3]{%
+	\begin{figure}
+		\centerline{\includegraphics[width=#2]{figures/#1.pdf}}
+		\caption{#3}
+		\label{fig:#1}
+	\end{figure}
+}
+
+% Floating figures = figures with floating text around: filename width caption
+\newcommand{\myfloatfigure}[3]{%
+	\begin{floatingfigure}{#2}
+		\includegraphics[width=#2]{figures/#1.pdf}
+		\caption{#3}
+		\label{fig:#1}
+	\end{floatingfigure}
+}
+
+% two figures side by side: file1 width1 caption1 file2 width2 caption2
+\newcommand{\mydoublefigure}[6]{%
+	\begin{figure}
+		\begin{minipage}[t]{#2}
+			\centerline{\includegraphics[width=\textwidth]{figures/#1.pdf}}
+			\centering
+			\caption{#3}
+			\label{fig:#1}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{#5}
+			\centerline{\includegraphics[width=\textwidth]{figures/#4.pdf}}
+			\centering
+			\caption{#6}
+			\label{fig:#4}
+		\end{minipage}
+	\end{figure}
+}
+
+
+% Better verbatim environments (requires fancyvrb package)
+\DefineVerbatimEnvironment{myverb}{Verbatim}{fontsize=\small,baselinestretch=0.84}
+\DefineVerbatimEnvironment{myverbbox}{Verbatim}{frame=single,fontsize=\small,baselinestretch=0.84}
+
+
+% For figures and tables
+\renewcommand{\topfraction}{0.9} % a page has at most 90% of floats and at least 10% of text (if page contains floats AND text)
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\floatpagefraction}{0.7} % a page with floats only is at least 70% full
+
+% Hyphenation (include a special file with hyphenation hints if there are problems)
+% \include{myhyphen}
+
+\begin{document}
+	
+	\raggedbottom
+	% Title page
+	
+	\begingroup
+	\pagenumbering{roman}
+	%\include{title}
+	\begin{titlepage}
+		\centering
+		\vspace{1.5cm}
+		{\huge Improving Word Embeddings Using Kernel Principal Component Analysis\bfseries \par}
+		\vspace{2cm}
+		{\Large\bfseries Vishwani Gupta\par}
+		\vspace{2cm}
+		{\bfseries Bonn-Aachen International Center for Information Technology (B-IT)\par}
+		\vspace{3cm}
+		{\Large Master Thesis\par}
+		{\Large Media Informatics\par}
+		\vspace{1cm}
+		%{\Large Rheinische Friedrich-Wilhelms-Universit\"at Bonn \par}
+		%{\Large Fraunhofer IAIS \par}
+		
+		\vspace{1cm}
+		\vfill
+		Supervisors\par
+		Prof.~Dr.~Christian Bauckhage\par
+		Prof.~Dr.~Stephan Wrobel
+		
+		\vfill
+		
+		% Bottom of the page
+		%{\large \today\par}
+		
+	\end{titlepage}
+	%\maketitle
+	\newpage
+	
+	\thispagestyle{empty}
+	
+	\rule{0cm}{5cm}
+	
+	%%% Include abstract and acknowledgements as necessary
+	\include{acknowledgements}
+	\include{abstract}
+	
+	\newpage
+	\endgroup
+	
+	\pagestyle{fancy}
+	
+	% Headers with page numbers and section/chapter titles
+	\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+	\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ #1}{}}
+	\lhead[\rm\thepage]{\sl\rightmark}
+	\chead{}
+	\rhead[\sl\leftmark]{\rm\thepage}
+	
+	% Footers empty\textbf{}
+	\lfoot{}
+	\cfoot{}
+	\rfoot{}
+	
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	
+	\newpage
+	
+	\input{intro}
+	\input{term}
+	\input{relwork}
+	\input{approach}
+	\input{eval}
+	\input{concl}
+	%\begin{appendix}
+	%	\input{appendix}
+	%\end{appendix}
+	
+	%references
+	\input{biblio}
+	
+\end{document}
